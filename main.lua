@@ -574,3 +574,291 @@ LIB("Render", {
         end
     end
 })
+
+repeat task.wait() until game:IsLoaded()
+repeat task.wait() until shared.GuiLibrary
+local GuiLibrary = shared.GuiLibrary
+local COB = function(tab, argstable) 
+    return GuiLibrary["ObjectsThatCanBeSaved"][tab.."Window"]["Api"].CreateOptionsButton(argstable)
+end
+
+local AutoWin = COB("Utility", {
+    ["Name"] = "TPAutoWin",
+    ["Function"] = function(callback)
+        if callback then
+            pcall(function()
+                for i,v in pairs(game.Players:GetPlayers()) do
+                    if v.Team == game:GetService("Players").LocalPlayer.Team and v ~= game:GetService("Players").LocalPlayer then
+                        v:Destroy()
+                    end
+                 end
+local Players = game:GetService("Players")
+getgenv().Autowin = true
+while getgenv().Autowin do
+   for _,v in pairs(Players:GetPlayers()) do
+       if v.Character and v.Character:FindFirstChildOfClass("Humanoid") and v.Character.Humanoid.Health ~= 0 and v ~= Players.LocalPlayer then
+           repeat
+               Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame
+               task.wait(0.2)
+           until v.Character.Humanoid.Health <= 0
+       end
+   end
+   task.wait()
+end
+            end)
+        else
+            pcall(function()
+                print("disabled autowin")
+            end)
+        end
+    end,
+    ["Default"] = false,
+    ["HoverText"] = "works only with disabler"
+})
+
+local Shaders = COB("Render", {
+    ["Name"] = "Shaders",
+    ["Function"] = function(callback)
+        if callback then
+            pcall(function()
+                print("shaders enabled")
+                game:GetService("Lighting"):ClearAllChildren()
+                local Bloom = Instance.new("BloomEffect")
+                Bloom.Intensity = 0.1
+                Bloom.Threshold = 0
+                Bloom.Size = 100
+
+                local Tropic = Instance.new("Sky")
+                Tropic.Name = "Tropic"
+                Tropic.SkyboxUp = "http://www.roblox.com/asset/?id=169210149"
+                Tropic.SkyboxLf = "http://www.roblox.com/asset/?id=169210133"
+                Tropic.SkyboxBk = "http://www.roblox.com/asset/?id=169210090"
+                Tropic.SkyboxFt = "http://www.roblox.com/asset/?id=169210121"
+                Tropic.StarCount = 100
+                Tropic.SkyboxDn = "http://www.roblox.com/asset/?id=169210108"
+                Tropic.SkyboxRt = "http://www.roblox.com/asset/?id=169210143"
+                Tropic.Parent = Bloom
+
+                local Sky = Instance.new("Sky")
+                Sky.SkyboxUp = "http://www.roblox.com/asset/?id=196263782"
+                Sky.SkyboxLf = "http://www.roblox.com/asset/?id=196263721"
+                Sky.SkyboxBk = "http://www.roblox.com/asset/?id=196263721"
+                Sky.SkyboxFt = "http://www.roblox.com/asset/?id=196263721"
+                Sky.CelestialBodiesShown = false
+                Sky.SkyboxDn = "http://www.roblox.com/asset/?id=196263643"
+                Sky.SkyboxRt = "http://www.roblox.com/asset/?id=196263721"
+                Sky.Parent = Bloom
+
+                Bloom.Parent = game:GetService("Lighting")
+
+                local Bloom = Instance.new("BloomEffect")
+                Bloom.Enabled = false
+                Bloom.Intensity = 0.35
+                Bloom.Threshold = 0.2
+                Bloom.Size = 56
+
+                local Tropic = Instance.new("Sky")
+                Tropic.Name = "Tropic"
+                Tropic.SkyboxUp = "http://www.roblox.com/asset/?id=169210149"
+                Tropic.SkyboxLf = "http://www.roblox.com/asset/?id=169210133"
+                Tropic.SkyboxBk = "http://www.roblox.com/asset/?id=169210090"
+                Tropic.SkyboxFt = "http://www.roblox.com/asset/?id=169210121"
+                Tropic.StarCount = 100
+                Tropic.SkyboxDn = "http://www.roblox.com/asset/?id=169210108"
+                Tropic.SkyboxRt = "http://www.roblox.com/asset/?id=169210143"
+                Tropic.Parent = Bloom
+
+                local Sky = Instance.new("Sky")
+                Sky.SkyboxUp = "http://www.roblox.com/asset/?id=196263782"
+                Sky.SkyboxLf = "http://www.roblox.com/asset/?id=196263721"
+                Sky.SkyboxBk = "http://www.roblox.com/asset/?id=196263721"
+                Sky.SkyboxFt = "http://www.roblox.com/asset/?id=196263721"
+                Sky.CelestialBodiesShown = false
+                Sky.SkyboxDn = "http://www.roblox.com/asset/?id=196263643"
+                Sky.SkyboxRt = "http://www.roblox.com/asset/?id=196263721"
+                Sky.Parent = Bloom
+
+                Bloom.Parent = game:GetService("Lighting")
+                local Blur = Instance.new("BlurEffect")
+                Blur.Size = 2
+
+                Blur.Parent = game:GetService("Lighting")
+                local Efecto = Instance.new("BlurEffect")
+                Efecto.Name = "Efecto"
+                Efecto.Enabled = false
+                Efecto.Size = 2
+
+                Efecto.Parent = game:GetService("Lighting")
+                local Inaritaisha = Instance.new("ColorCorrectionEffect")
+                Inaritaisha.Name = "Inari taisha"
+                Inaritaisha.Saturation = 0.05
+                Inaritaisha.TintColor = Color3.fromRGB(255, 224, 219)
+
+                Inaritaisha.Parent = game:GetService("Lighting")
+                local Normal = Instance.new("ColorCorrectionEffect")
+                Normal.Name = "Normal"
+                Normal.Enabled = false
+                Normal.Saturation = -0.2
+                Normal.TintColor = Color3.fromRGB(255, 232, 215)
+
+                Normal.Parent = game:GetService("Lighting")
+                local SunRays = Instance.new("SunRaysEffect")
+                SunRays.Intensity = 0.05
+
+                SunRays.Parent = game:GetService("Lighting")
+                local Sunset = Instance.new("Sky")
+                Sunset.Name = "Sunset"
+                Sunset.SkyboxUp = "rbxassetid://323493360"
+                Sunset.SkyboxLf = "rbxassetid://323494252"
+                Sunset.SkyboxBk = "rbxassetid://323494035"
+                Sunset.SkyboxFt = "rbxassetid://323494130"
+                Sunset.SkyboxDn = "rbxassetid://323494368"
+                Sunset.SunAngularSize = 14
+                Sunset.SkyboxRt = "rbxassetid://323494067"
+
+                Sunset.Parent = game:GetService("Lighting")
+                local Takayama = Instance.new("ColorCorrectionEffect")
+                Takayama.Name = "Takayama"
+                Takayama.Enabled = false
+                Takayama.Saturation = -0.3
+                Takayama.Contrast = 0.1
+                Takayama.TintColor = Color3.fromRGB(235, 214, 204)
+
+                Takayama.Parent = game:GetService("Lighting")
+                local L = game:GetService("Lighting")
+                L.Brightness = 2.14
+                L.ColorShift_Bottom = Color3.fromRGB(11, 0, 20)
+                L.ColorShift_Top = Color3.fromRGB(240, 127, 14)
+                L.OutdoorAmbient = Color3.fromRGB(34, 0, 49)
+                L.ClockTime = 6.7
+                L.FogColor = Color3.fromRGB(94, 76, 106)
+                L.FogEnd = 1000
+                L.FogStart = 0
+                L.ExposureCompensation = 0.24
+                L.ShadowSoftness = 0
+                L.Ambient = Color3.fromRGB(59, 33, 27)
+
+                local Bloom = Instance.new("BloomEffect")
+                Bloom.Intensity = 0.1
+                Bloom.Threshold = 0
+                Bloom.Size = 100
+
+                local Tropic = Instance.new("Sky")
+                Tropic.Name = "Tropic"
+                Tropic.SkyboxUp = "http://www.roblox.com/asset/?id=169210149"
+                Tropic.SkyboxLf = "http://www.roblox.com/asset/?id=169210133"
+                Tropic.SkyboxBk = "http://www.roblox.com/asset/?id=169210090"
+                Tropic.SkyboxFt = "http://www.roblox.com/asset/?id=169210121"
+                Tropic.StarCount = 100
+                Tropic.SkyboxDn = "http://www.roblox.com/asset/?id=169210108"
+                Tropic.SkyboxRt = "http://www.roblox.com/asset/?id=169210143"
+                Tropic.Parent = Bloom
+
+                local Sky = Instance.new("Sky")
+                Sky.SkyboxUp = "http://www.roblox.com/asset/?id=196263782"
+                Sky.SkyboxLf = "http://www.roblox.com/asset/?id=196263721"
+                Sky.SkyboxBk = "http://www.roblox.com/asset/?id=196263721"
+                Sky.SkyboxFt = "http://www.roblox.com/asset/?id=196263721"
+                Sky.CelestialBodiesShown = false
+                Sky.SkyboxDn = "http://www.roblox.com/asset/?id=196263643"
+                Sky.SkyboxRt = "http://www.roblox.com/asset/?id=196263721"
+                Sky.Parent = Bloom
+
+                Bloom.Parent = game:GetService("Lighting")
+
+                local Bloom = Instance.new("BloomEffect")
+                Bloom.Enabled = false
+                Bloom.Intensity = 0.35
+                Bloom.Threshold = 0.2
+                Bloom.Size = 56
+
+                local Tropic = Instance.new("Sky")
+                Tropic.Name = "Tropic"
+                Tropic.SkyboxUp = "http://www.roblox.com/asset/?id=169210149"
+                Tropic.SkyboxLf = "http://www.roblox.com/asset/?id=169210133"
+                Tropic.SkyboxBk = "http://www.roblox.com/asset/?id=169210090"
+                Tropic.SkyboxFt = "http://www.roblox.com/asset/?id=169210121"
+                Tropic.StarCount = 100
+                Tropic.SkyboxDn = "http://www.roblox.com/asset/?id=169210108"
+                Tropic.SkyboxRt = "http://www.roblox.com/asset/?id=169210143"
+                Tropic.Parent = Bloom
+
+                local Sky = Instance.new("Sky")
+                Sky.SkyboxUp = "http://www.roblox.com/asset/?id=196263782"
+                Sky.SkyboxLf = "http://www.roblox.com/asset/?id=196263721"
+                Sky.SkyboxBk = "http://www.roblox.com/asset/?id=196263721"
+                Sky.SkyboxFt = "http://www.roblox.com/asset/?id=196263721"
+                Sky.CelestialBodiesShown = false
+                Sky.SkyboxDn = "http://www.roblox.com/asset/?id=196263643"
+                Sky.SkyboxRt = "http://www.roblox.com/asset/?id=196263721"
+                Sky.Parent = Bloom
+
+                Bloom.Parent = game:GetService("Lighting")
+                local Blur = Instance.new("BlurEffect")
+                Blur.Size = 2
+
+                Blur.Parent = game:GetService("Lighting")
+                local Efecto = Instance.new("BlurEffect")
+                Efecto.Name = "Efecto"
+                Efecto.Enabled = false
+                Efecto.Size = 4
+
+                Efecto.Parent = game:GetService("Lighting")
+                local Inaritaisha = Instance.new("ColorCorrectionEffect")
+                Inaritaisha.Name = "Inari taisha"
+                Inaritaisha.Saturation = 0.05
+                Inaritaisha.TintColor = Color3.fromRGB(255, 224, 219)
+
+                Inaritaisha.Parent = game:GetService("Lighting")
+                local Normal = Instance.new("ColorCorrectionEffect")
+                Normal.Name = "Normal"
+                Normal.Enabled = false
+                Normal.Saturation = -0.2
+                Normal.TintColor = Color3.fromRGB(255, 232, 215)
+
+                Normal.Parent = game:GetService("Lighting")
+                local SunRays = Instance.new("SunRaysEffect")
+                SunRays.Intensity = 0.05
+
+                SunRays.Parent = game:GetService("Lighting")
+                local Sunset = Instance.new("Sky")
+                Sunset.Name = "Sunset"
+                Sunset.SkyboxUp = "rbxassetid://323493360"
+                Sunset.SkyboxLf = "rbxassetid://323494252"
+                Sunset.SkyboxBk = "rbxassetid://323494035"
+                Sunset.SkyboxFt = "rbxassetid://323494130"
+                Sunset.SkyboxDn = "rbxassetid://323494368"
+                Sunset.SunAngularSize = 14
+                Sunset.SkyboxRt = "rbxassetid://323494067"
+
+                Sunset.Parent = game:GetService("Lighting")
+                local Takayama = Instance.new("ColorCorrectionEffect")
+                Takayama.Name = "Takayama"
+                Takayama.Enabled = false
+                Takayama.Saturation = -0.3
+                Takayama.Contrast = 0.1
+                Takayama.TintColor = Color3.fromRGB(235, 214, 204)
+
+                Takayama.Parent = game:GetService("Lighting")
+                local L = game:GetService("Lighting")
+                L.Brightness = 2.3
+                L.ColorShift_Bottom = Color3.fromRGB(11, 0, 20)
+                L.ColorShift_Top = Color3.fromRGB(240, 127, 14)
+                L.OutdoorAmbient = Color3.fromRGB(34, 0, 49)
+                L.TimeOfDay = "07:30:00"
+                L.FogColor = Color3.fromRGB(94, 76, 106)
+                L.FogEnd = 300
+                L.FogStart = 0
+                L.ExposureCompensation = 0.24
+                L.ShadowSoftness = 0
+                L.Ambient = Color3.fromRGB(59, 33, 27)
+            end)
+        else
+            pcall(function()
+                print("shaders disabled")
+            end)
+        end
+    end,
+    ["Default"] = false,
+    ["HoverText"] = "shaders help u"
+})
